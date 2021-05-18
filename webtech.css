@@ -6,6 +6,10 @@
     font-family: Arial; /* Lato от Google не поддържа кирилица */
 }
 
+.reveal li {
+    font-size: .8em;
+}
+
 .reveal h1 {
     font-family: var(--webtech-heading-font);
     font-size: 1.7em;
@@ -14,11 +18,17 @@
 
 .reveal h2 {
     font-family: var(--webtech-heading-font);
-    font-size: .6em;
+    font-size: 1.3em;
     margin-bottom: 5ex;
 }
 
 .reveal h3 {
+    font-family: var(--webtech-heading-font);
+    font-size: .6em;
+    margin-bottom: 5ex;
+}
+
+.reveal h4 {
     font-family: var(--webtech-heading-font);
     font-size: .4em;
     color: darkgray;

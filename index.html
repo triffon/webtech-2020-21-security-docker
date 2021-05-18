@@ -25,12 +25,176 @@
 			<div class="slides">
 				<section>
                                         <h1>Сигурност на уеб приложения</h1>
-                                        <h2>Уеб технологии, спец. Информационни системи, 2020/21 г.</h2>
-                                        <h3>Тази презентацията е достъпна под лиценза Creative Commons Признание-Некомерсиално-Споделяне на споделеното 4.0 Международен</h4>
+                                        <h3>Уеб технологии, спец. Информационни системи, 2020/21 г.</h>
+                                        <h4>Тази презентацията е достъпна под лиценза Creative Commons Признание-Некомерсиално-Споделяне на споделеното 4.0 Международен</h4>
                                 </section>
-				<section>
-                                        <h1>OWASP</h1>
-                                        <p>Това е обикновен текст вече</p>
+                                <section>
+                                        <section>
+                                                <h1>Информационна сигурност</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Информацията като актив</h2>
+                                                <ul>
+                                                        <li>информацията е ценен <strong>актив (asset)</strong></li>
+                                                        <li>заплахи над информацията:
+                                                                <ul>
+                                                                        <li>загуба</li>
+                                                                        <li>неправомерен достъп</li>
+                                                                        <li>неправомерно разпространение</li>
+                                                                        <li>неправомерна употреба</li>
+                                                                        <li>неправомерно възпроизвеждане</li>
+                                                                        <li>неправомерна промяна</li>
+                                                                </ul>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Какво е информационна сигурност?</h2>
+                                                <p>
+                                                        Методи за защита на информацията от заплахи
+                                                </p>
+                                                <ul>
+                                                        <li>превантивни мерки</li>
+                                                        <li>наблюдение</li>
+                                                        <li>процеси и процедури</li>
+                                                        <li>проверка</li>
+                                                        <li>периодично обновяване</li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Преди компютрите</h2>
+                                                <ul>
+                                                        <li>основно физически и процедурни защити</li>
+                                                        <li>защита на кореспонденцията (<em>пример: шифър на Цезар</em>)</li>
+                                                        <li>защита от промяна (<em>пример: восъчен печат</em>)</li>
+                                                        <li>нива на достъп (<em>пример: военни класификации</em>)</li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Преди мрежите</h2>
+                                                <ul>
+                                                        <li class="fragment">вируси, разрушаващи данни
+                                                                <ul>
+                                                                        <li><strong>защита:</strong> антивирусни програми</li>
+                                                                </ul>
+                                                        </li>
+                                                        <li class="fragment">неправомерно възпроизвеждане на интелектуално собственост (<em>пиратство</em>)
+                                                                <ul>
+                                                                        <li><strong>защита:</strong> техники за защита от копиране</li>
+                                                                </ul>
+                                                        </li>
+                                                        <li class="fragment">неправомерен достъп до данни при физически достъп
+                                                                <ul>
+                                                                        <li><strong>защита:</strong> криптографски алгоритми</li>
+                                                                </ul>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Мрежова сигурност</h2>
+                                                <img style="height : 350px; margin: 0 auto 0 auto;" src="http://www.referati.org/ufiles/2010-11-11/39633/mrejova-arhitektura-modelyt-osi_html_39f3eb27.jpg"/>
+                                                <p class="fragment">
+                                                        Ще обърнем внимание основно на приложния и представителния слой
+                                                </p>
+                                        </section>                                        
+                                </section>
+                                <section>
+                                        <section>
+                                                <h1>Сигурност на уеб приложения</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Основни понятия</h2>
+                                                <ul>
+                                                        <li class="fragment"><strong>актив (asset)</strong> &mdash; ценен ресурс: данни, пари/точки по сметка, системни файлове, код, компютърно време, мрежова връзка</li>
+                                                        <li class="fragment"><strong>уязвимост (vulnerability)</strong> &mdash; аспект на системата, който позволява неупълномощен достъп до актив</li>
+                                                        <li class="fragment"><strong>атака (attack)</strong> &mdash; действие причиняващо  вреда, свързана с един или повече активи</li>
+                                                        <li class="fragment"><strong>заплаха (threat)</strong> &mdash; потенциална атака над актив, обикновено свързана с използване на една или повече уязвимости</li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Троицата CIA</h2>
+                                                <ul>
+                                                        <li><strong>Поверителност (Confidentiality)</strong> &mdash; защита от неправомерен достъп</li>
+                                                        <li><strong>Цялостност (Integrity)</strong> &mdash; коректност и защита от неправомерна промяна</li>
+                                                        <li><strong>Наличност (Availability)</strong> &mdash; лесен достъп за упълномощените лица</li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Open Web Application Security Project (OWASP)</h2>
+                                                <p>
+                                                        <a href="https://owasp.org/" target="_blank">OWASP</a> е фондация с идеална цел, посветена на подобряване на сигурността на уеб приложения
+                                                </p>
+                                                <p>
+                                                        <a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10 Web Application Security Risks</a>
+                                                </p>
+                                        </section>
+                                        <section>
+                                                <h2>OWASP &mdash; полезни ресурси</h2>
+                                                <ul>
+                                                        <li><a href="https://github.com/OWASP/DevGuide">OWASP Development Guide</a> &mdash; препоръки за разработка на сигурен софтуер</li>
+                                                        <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/">OWASP Testing Guide</a> &mdash; препоръки за тестване на сигурността на приложенията</li>
+                                                        <li><a href="https://owasp.org/www-project-webgoat/">WebGoat</a> &mdash; уеб приложение на Java за обучителни цели, разработено нарочно с много уязвимости</li>
+                                                        <li><a href="https://owasp.org/www-project-zap/">Zed Attack Proxy (ZAP)</a> &mdash; инструмент за анализ на уязвимости на уеб приложения</li>
+                                                        <li><a href="https://owasp.org/www-project-juice-shop/">Juice Shop</a> &mdash; Node.js приложение с нарочно оставени уязвимости с обучителни цел</li>
+                                                </ul>
+                                        </section>
+                                </section>
+                                <section>
+                                        <section>
+                                                <h1>Популярни рискове и атаки над уеб приложения</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Инжектиране на команди (Injection)</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Cross-site scripting (XSS)</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Проблеми с удостоверяването (authentication)</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Проблеми с упълномощяването (authorization)</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Подправяне на заявки<br>(Cross-Site Request Forgery &mdash; CSRF)</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Използване на уязвими компоненти</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                </section>
+                                <section>
+                                        <section>
+                                                <h1>Docker</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Виртуални машини</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Контейнери</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Основни команди на Docker</h2>
+                                                <p>TODO</p>
+                                        </section>                                       
+                                        <section>
+                                                <h2>Построяване на образи (images)</h2>
+                                                <p>Dockerfile TODO</p>
+                                        </section>
+                                        <section>
+                                                <h2>Docker Hub</h2>
+                                                <p>TODO</p>
+                                        </section>
+                                </section>
+                                <section>
+                                        <h1>Въпроси?</h1>
                                 </section>
 			</div>
 		</div>
