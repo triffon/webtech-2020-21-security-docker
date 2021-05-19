@@ -78,7 +78,7 @@
                                                                         <li><strong>защита:</strong> антивирусни програми</li>
                                                                 </ul>
                                                         </li>
-                                                        <li class="fragment">неправомерно възпроизвеждане на интелектуално собственост (<em>пиратство</em>)
+                                                        <li class="fragment">неправомерно възпроизвеждане на интелектуална собственост (<em>пиратство</em>)
                                                                 <ul>
                                                                         <li><strong>защита:</strong> техники за защита от копиране</li>
                                                                 </ul>
@@ -107,7 +107,7 @@
                                                 <ul>
                                                         <li class="fragment"><strong>актив (asset)</strong> &mdash; ценен ресурс: данни, пари/точки по сметка, системни файлове, код, компютърно време, мрежова връзка</li>
                                                         <li class="fragment"><strong>уязвимост (vulnerability)</strong> &mdash; аспект на системата, който позволява неупълномощен достъп до актив</li>
-                                                        <li class="fragment"><strong>атака (attack)</strong> &mdash; действие причиняващо  вреда, свързана с един или повече активи</li>
+                                                        <li class="fragment"><strong>атака (attack)</strong> &mdash; действие причиняващо вреда, свързана с един или повече активи</li>
                                                         <li class="fragment"><strong>заплаха (threat)</strong> &mdash; потенциална атака над актив, обикновено свързана с използване на една или повече уязвимости</li>
                                                 </ul>
                                         </section>
@@ -135,7 +135,7 @@
                                                         <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/">OWASP Testing Guide</a> &mdash; препоръки за тестване на сигурността на приложенията</li>
                                                         <li><a href="https://owasp.org/www-project-webgoat/">WebGoat</a> &mdash; уеб приложение на Java за обучителни цели, разработено нарочно с много уязвимости</li>
                                                         <li><a href="https://owasp.org/www-project-zap/">Zed Attack Proxy (ZAP)</a> &mdash; инструмент за анализ на уязвимости на уеб приложения</li>
-                                                        <li><a href="https://owasp.org/www-project-juice-shop/">Juice Shop</a> &mdash; Node.js приложение с нарочно оставени уязвимости с обучителни цел</li>
+                                                        <li><a href="https://owasp.org/www-project-juice-shop/">Juice Shop</a> &mdash; Node.js приложение с нарочно оставени уязвимости с обучителни цели</li>
                                                 </ul>
                                         </section>
                                 </section>
@@ -153,7 +153,7 @@
                                                                                 query = "SELECT * FROM users WHERE id = " + id;
 
                                                                                 https://example.com/profile.php?id=2 OR 1=1
-                                                                                https://example.com/profile.php?id=2; -- DELETE FROM users
+                                                                                https://example.com/profile.php?id=2; DELETE FROM users
                                                                 </code></pre>
                                                         </li>
                                                         <li><strong>Защита:</strong> премахване или маскиране на специални символи, параметризирани заявки</li>
@@ -185,7 +185,7 @@
                                                         <li><strong>Пример:</strong><br>
                                                                 <pre><code class="hljs" data-trim>
                                                                                 logged = true;
-                                                                                if (password == null || hash(password) != correctHash)
+                                                                                if (password && hash(password) != correctHash)
                                                                                 	logged = false;
                                                                 </code></pre>
                                                         </li>
