@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Управление на кода с Git</title>
+		<title>Управление на кода с git</title>
 
                 <meta name="description" content=">Лекция към курса по Уеб технологии на спец. Информационни системи, 2021/22 г.">
 		<meta name="author" content="Трифон Трифонов">
@@ -24,9 +24,376 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-                                        <h1>Управление на кода с Git</h1>
+                                        <h1>Управление на кода с git</h1>
                                         <h3>Web технологии, спец. Информационни системи, 2021/22 г.</h3>
                                         <h4>Тази презентацията е достъпна под лиценза Creative Commons Признание-Некомерсиално-Споделяне на споделеното 4.0 Международен</h4>
+                                </section>
+                                <section>
+                                        <section>
+                                                <h1>Основни принципи и малко история</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Системи за управление на кода</h2>
+                                                <ul>
+                                                        <li class="fragment">запазване на текущото състояние на кода</li>
+                                                        <li class="fragment">история на промените в кода (дата, автор, цел, причина, описание)</li>
+                                                        <li class="fragment">връщане към произволен момент от историята на кода</li>
+                                                        <li class="fragment">информация за промените между два момента от време</li>
+                                                        <li class="fragment">споделяне на код и информация за разработката му</li>
+                                                        <li class="fragment">паралелна работа по кода от различни разработчици</li>
+                                                        <li class="fragment">обмяна на код между различни негови версии</li>
+                                                        <li class="fragment">отбелязване (публикуване) на конкретно състояние на кода</li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Кратка история на git</h2>
+
+                                                <ul>
+                                                        <li class="fragment">създаден от Linus Torvalds през 2005 г.</li>
+                                                        <li class="fragment">основно предназначен за управление на кода на ядрото Linux</li>
+                                                        <li class="fragment">свободен софтуер с отворен код</li>
+                                                        <li class="fragment">разпределена система</li>
+                                                        <li class="fragment">силно ориентирана към *nix философията</li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Основни понятия в git</h2>
+
+                                                <ul>
+                                                        <li class="fragment">хранилище (repository)</li>
+                                                        <li class="fragment">подаване (commit)</li>
+                                                        <li class="fragment">клон (branch)</li>
+                                                        <li class="fragment">индекс (staging area)</li>
+                                                        <li class="fragment">хеш (hash)</li>
+                                                </ul>
+                                        </section>
+                                </section>
+
+                                <section>
+                                        <section>
+                                                <h1>Първи стъпки в git</h1>
+                                        </section>
+                                        <section>
+                                                <h2>Интерфейс на командния ред (CLI)</h2>
+
+                                                <div>основната работа с git е през командния ред:</div>
+                                                <pre><code class="language-bash hljs" data-trim>
+                                                                git &lt;команда&gt; &lt;опции&gt; &lt;параметри&gt;
+                                                </code></pre>
+                                        </section>
+
+                                        <section>
+                                                <h2>Откъде да започнем</h2>
+
+                                                <ul>
+                                                        <li class="fragment">клониране на съществуващо хранилище
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git clone &lt;URL&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">създаване на празно хранилище
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git init
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">регистриране на всички файлове в хранилището
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git add .
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">подаване на регистрираните файлове към хранилището
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git commit
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Как да правим промени</h2>
+
+                                                <ul>
+                                                        <li class="fragment">регистриране на нови промени
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                        git add &lt;файл&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">подаване на всички променени и следени файлове
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git commit -a
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Къде сме в момента</h2>
+                                                <ul>
+                                                        <li class="fragment">текущо състояние на кода, индекса и работата директория
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git status
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">информация за историята
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git log [--graph]
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">графична информация за историята
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                gitk
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Къде сме в момента</h2>
+                                                <ul>
+                                                        <li class="fragment">какви клони има хранилището и на кой сме в момента
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git branch
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">преглед на промените
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git diff [&lt;подаване&gt;]
+                                                                                git diff &lt;подаване1&gt; &lt;подаване2&gt;
+                                                                </code></pre>
+                                                        </li>
+
+
+                                                        <li class="fragment">преглед на файл в момент от времето
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git show [&lt;подаване&gt;:] &lt;файл&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Когато нещо се обърка</h2>
+
+                                                <div class="alert">Внимание: повечето команди по-долу са свързани със загуба на данни без възможност за тяхното възстановяване!</div>
+                                                <ul>
+                                                        <li class="fragment">поправка на съобщението на последното подаване
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git commit --amend
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">изтриване на файл от хранилището
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git rm &lt;файл&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">отказ от локални промени във файлове
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git restore {&lt;файл&gt;}
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">отказ от всички локални промени по следените файлове
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git reset --hard
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                        <section>
+                                                <h2>Когато нещо се обърка</h2>
+
+                                                        <li class="fragment">изчистване на неследени файлове
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git clean -n [-d]
+                                                                                git clean -f [-d]
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">възстановяване на клон към предишно състояние
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git reset --hard &lt;клон&gt;{&lt;брой-стъпки-назад&gt;}
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Експериментална разработка</h2>
+
+                                                <ul>
+                                                        <li class="fragment">преминаване към друг клон
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git switch &lt;клон&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">създаване на нов клон и преминаване към него
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git switch -c &lt;нов-клон&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">временно запазване на текущите промени
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git stash
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">възстановяване на временно запазени промени
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git stash apply
+                                                                                git stash pop
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                </section>
+
+                                <section>
+                                        <section>
+                                                <h1>Съвместна работа</h1>
+                                        </section>
+
+                                        <section>
+                                                <h2>Работа с отдалечени хранилища</h2>
+
+                                                <ul>
+                                                        <li class="fragment">добавяне и на отдалечено хранилище
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git remote add &lt;име&gt; &lt;URL&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">издърпване на промени от отдалечено хранилище
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git pull [&lt;хранилище&gt;] {&lt;клон&gt;}
+                                                                                git fetch [&lt;хранилище&gt;] {&lt;клон&gt;}
+                                                                </code></pre>
+                                                        <li class="fragment">отдалечени клонове
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git branch -r
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">изтласкване към отдалечено хранилище
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git push [&lt;хранилище&gt;] -u [&lt;клон-за-следене&gt;] [&lt;клон&gt;]
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Сливане на промени</h2>
+                                                <ul>
+                                                        <li class="fragment">сливане на клонове в текущия клон
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git merge {&lt;клон&gt;}
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">управление на конфликти при сливане
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git mergetool
+                                                                                git add &lt;файл&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">пребазиране върху клон
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git rebase [&lt;клон&gt;]
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+                                </section>
+
+                                <section>
+                                        <section>
+                                                <h1>Поглед отвътре</h1>
+                                        </section>
+
+                                        <section>
+                                                <h2>Индекс</h2>
+                                                <ul>
+                                                        <li class="fragment">интерактивно добавяне в индекса
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git add -i
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">проверка за промени в индекса
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git diff --cached
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">възстановяване на файлове от индекса
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git restore --cached {&lt;файл&gt;}
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">възстановяване със или без запазване на промените в индекса
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git reset --soft
+                                                                                git reset --mixed
+                                                                </code></pre>
+                                                        </li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Конфигурация: <code>.git/config</code></h2>
+                                                <ul>
+                                                        <li class="fragment">преглед на конфигурация:
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git config -l
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">преглед на конкретна настройка:
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git config &lt;секция&gt;.&lt;настройка&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">промяна на конкретна настройка:
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git config &lt;секция&gt;.&lt;настройка&gt; &lt;стойност&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">глобална конфигурация: &lt;директория&gt;/<code>.gitconfig</code>
+                                                                <pre><code class="language-bash hljs" data-trim>
+                                                                                git config --global
+                                                                </code></pre>
+                                                        </li>
+                                                        <li class="fragment">игнориране на файлове:<code>.gitignore</code></li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Обекти в git</h2>
+
+                                                Четири вида обекти:
+                                                <ul>
+                                                        <li class="fragment">подаване (commit): съдържа информация за промяна относно базово състояние, описва момент от историята на хранилището</li>
+                                                        <li class="fragment">дърво (tree): съдържа информация за йерархична структура на файловете</li>
+                                                        <li class="fragment">файл (blob): масив от данни</li>
+                                                        <li class="fragment">етикет (tag): именуван константен указател към подаване</li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Github</h2>
+                                                <h3>Комерсиална платформа за работа с git хранилища.</h3>
+                                                <ul>
+                                                        <li class="fragment">създаване на ново хранилище</li>
+                                                        <li class="fragment">лицензи за код</li>
+                                                        <li class="fragment">разклоняване на хранилище (fork)</li>
+                                                        <li class="fragment">заявка за издърпване (pull request, PR)</li>
+                                                        <li class="fragment">SSH ключове</li>
+                                                        <li class="fragment">GPG ключове</li>
+                                                </ul>
+                                        </section>
+
+                                        <section>
+                                                <h2>Допълнителни ресурси</h2>
+                                                <ul>
+                                                        <li class="fragment"><a href="https://git-scm.com/docs/gitglossary">Речник на основните понятия</a></li>
+                                                        <li class="fragment"><a href="https://git-scm.com/book/">Книгата Pro git</a></li>
+                                                        <li class="fragment"><a href="https://git-scm.com/docs">Справочник на командите в git</a></li>
+                                                        <li class="fragment"><a href="https://ndpsoftware.com/git-cheatsheet.html">Интерактивен "пищов" за git</a></li>
+                                                        <li class="fragment"><a href="https://www.freecodecamp.org/news/learn-the-basics-of-git-in-under-10-minutes-da548267cc91/">Git за 10 минути</a></li>
+                                                </ul>
+                                        </section>
                                 </section>
                         </div>
 		</div>

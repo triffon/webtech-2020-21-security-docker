@@ -33,3 +33,9 @@
     font-size: .4em;
     color: darkgray;
 }
+
+.reveal .alert {
+    color: red;
+    font-size: .4em;
+    font-weight: bold;
+}
