@@ -144,6 +144,21 @@
                                                 <h1>Популярни рискове и атаки над уеб приложения</h1>
                                         </section>
                                         <section>
+                                                <h2>Доверие в клиента (Client-side trust)</h2>
+                                                <ul>
+                                                        <li><strong>Уязвимост:</strong> приложението разчита, че информацията от клиента е коректна</li>
+                                                        <li><strong>Атака:</strong> обработваните от браузъра данни могат да бъдат променени или подправени</li>
+                                                        <li><strong>Пример:</strong><br>
+                                                                <pre><code class="hlhtml" data-trim>
+                                                                                &lt;form action="/buy"&gt;
+                                                                                &lt;input type="hidden" name="discount" value="0"&gt;
+                                                                                &lt;/form&gt;
+                                                                </code></pre>
+                                                        </li>
+                                                        <li><strong>Защита:</strong> критичната логика на приложението трябва да е в сървърната част</li>
+                                                </ul>
+                                        </section>
+                                        <section>
                                                 <h2>Инжектиране на команди (Injection)</h2>
                                                 <ul>
                                                         <li><strong>Уязвимост:</strong> очакват се данни, които да бъдат попълнени като параметри в команда</li>
