@@ -4,20 +4,159 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>WebTech</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/sky.css" id="theme">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
 	</head>
 	<body>
+
+		<script src="http://unpkg.com/graphre/dist/graphre.js"></script>
+		<script src="http://unpkg.com/nomnoml/dist/nomnoml.js"></script>
+
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					Основни елементи на Web приложенията.
+					Трислойна архитектура
+				</section>
+				<section>
+					<section>
+						"Приложение" vs. "Web Приложение"?
+					</section>
+					<section>
+						<p>
+							Локално приложение</br>
+							(standalone, offline, native, etc.)
+						</p>
+						<canvas id="target-canvas-1"></canvas></br>
+						<script>
+							var canvas = document.getElementById('target-canvas-1');
+							var source = '[<actor>Потребител] <-> [Приложение]';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+					<section>
+						<p>
+							Клиент/сървър архитектура</br>
+						</p>
+						<canvas id="target-canvas-2"></canvas></br>
+						<script>
+							canvas = document.getElementById('target-canvas-2');
+							source = '[<actor>Потребител] <-> [Клиентско приложение];'+
+									'[Клиентско приложение]<-> [Сървърно приложение;(услуга)]';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+					<section>
+						<p>
+							Трислойна архитектура</br>
+						</p>
+						<canvas id="target-canvas-3"></canvas></br>
+						<script>
+							canvas = document.getElementById('target-canvas-3');
+							source = '#direction: right\n' +
+									'[<actor>Потребител] <-> [Presentation Layer]\n'+
+									'[Application Layer]<-> [Presentation Layer]\n' +
+									'[Application Layer]<-> [Database Layer]';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+					<section>
+						<p>
+							Трислойна архитектура</br>
+							Web терминология
+						</p>
+						<canvas id="target-canvas-4"></canvas></br>
+						<script>
+							canvas = document.getElementById('target-canvas-4');
+							source = '#direction: right\n' +
+									'[<actor>Потребител] <-> [Web Browser]\n'+
+									'[Application Server]<-> [Web Browser]\n' +
+									'[Application Server]<-> [Database Server]';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+				</section>
+				<section>
+					<section>
+						<p>
+							Обмен на данни между слоевете.</br>
+							Мрежови протоколи
+						</p>
+						<canvas id="target-canvas-5"></canvas></br>
+						<script>
+							canvas = document.getElementById('target-canvas-5');
+							source = '#direction: right\n' +
+									'[Computer A] <-> [<usecase>Network]\n' +
+									'[Network] <-> [Computer B]\n' +
+									'[Network] <-> [Computer C]\n' +
+									'[Network] <-> [Computer D]\n';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+					<section>
+						<p>
+							Transmission Control Protocol (TCP)
+
+						</p>
+						<div style="font-size: 0.6em">
+							<ul>
+								<li>Адреси</li>
+								<li>Портове</li>
+								<li>Пакети</li>
+							</ul>
+						</div>
+						<canvas id="target-canvas-6"></canvas></br>
+						<script>
+							canvas = document.getElementById('target-canvas-6');
+							source = '#direction: right\n' +
+									'[<actor>Потребител] <-> [130.204.16.139]\n' +
+									'[130.204.16.139] <-> [<usecase>Network]\n' +
+									'[Network] <-> [myserver.com:80 (web)]\n' +
+									'[Network] <-> [myserver.com:27017 (db)]\n' +
+									'[Network] <-> [anotherserver.com:8080 (app)]\n';
+							nomnoml.draw(canvas, source);
+						</script>
+					</section>
+					<section>
+						Application Layer протоколи. </br>
+						Комуникация от високо ниво</br>
+						&nbsp;
+						<div style="font-size: 0.6em;">
+							<ul>
+								<li>Пример с HTTP и FTP</li>
+							</ul>
+						</div>
+					</section>
+				</section>
+				<section>
+					<section>
+						Сървъри
+					</section>
+					<section>
+						Как се програмира сървър?</br>
+						Say Hello сървър
+					</section>
+					<section>
+						Какво по-точно е Web сървър?</br>
+						Демонстрация на  Web сървър
+					</section>
+				</section>
+				<section>
+					<section>
+						Браузъри
+					</section>
+				</section>
+				<section>
+					<section>
+						Бази от данни
+					</section>
+				</section>
 			</div>
 		</div>
 
